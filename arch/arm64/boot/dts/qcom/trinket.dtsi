@@ -66,6 +66,7 @@
 			reg = <0x0 0x0>;
 			enable-method = "psci";
 			capacity-dmips-mhz = <1024>;
+			freq-energy-model;
 			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_0>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
@@ -95,6 +96,7 @@
 			reg = <0x0 0x1>;
 			enable-method = "psci";
 			capacity-dmips-mhz = <1024>;
+			freq-energy-model;
 			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_0>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
@@ -121,6 +123,7 @@
 			reg = <0x0 0x2>;
 			enable-method = "psci";
 			capacity-dmips-mhz = <1024>;
+			freq-energy-model;
 			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_0>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
@@ -147,6 +150,7 @@
 			reg = <0x0 0x3>;
 			enable-method = "psci";
 			capacity-dmips-mhz = <1024>;
+			freq-energy-model;
 			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_0>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
@@ -173,6 +177,7 @@
 			reg = <0x0 0x100>;
 			enable-method = "psci";
 			capacity-dmips-mhz = <1638>;
+			freq-energy-model;
 			sched-energy-costs = <&CPU_COST_1 &CLUSTER_COST_1>;
 			next-level-cache = <&L2_1>;
 			qcom,lmh-dcvs = <&lmh_dcvs1>;
@@ -203,6 +208,7 @@
 			reg = <0x0 0x101>;
 			enable-method = "psci";
 			capacity-dmips-mhz = <1638>;
+			freq-energy-model;
 			sched-energy-costs = <&CPU_COST_1 &CLUSTER_COST_1>;
 			next-level-cache = <&L2_1>;
 			qcom,lmh-dcvs = <&lmh_dcvs1>;
@@ -229,6 +235,7 @@
 			reg = <0x0 0x102>;
 			enable-method = "psci";
 			capacity-dmips-mhz = <1638>;
+			freq-energy-model;
 			sched-energy-costs = <&CPU_COST_1 &CLUSTER_COST_1>;
 			next-level-cache = <&L2_1>;
 			qcom,lmh-dcvs = <&lmh_dcvs1>;
@@ -255,6 +262,7 @@
 			reg = <0x0 0x103>;
 			enable-method = "psci";
 			capacity-dmips-mhz = <1638>;
+			freq-energy-model;
 			sched-energy-costs = <&CPU_COST_1 &CLUSTER_COST_1>;
 			next-level-cache = <&L2_1>;
 			qcom,lmh-dcvs = <&lmh_dcvs1>;
@@ -319,8 +327,12 @@
 
 		CPU_COST_0: core-cost0 {
 			busy-cost-data = <
-				1017600	79
+				300000   33
+				614400   51
+				864000   68
+				1017600  79
 				1305600 114
+				1420800   132
 				1612800	171
 				1804800	223
 			>;
@@ -331,9 +343,13 @@
 
 		CPU_COST_1: core-cost1 {
 			busy-cost-data = <
+				300000   70
+				652800   115
+				902400   154
 				1056000  184
-				1401600	289
-				1804800 469
+				1401600  289
+				1536000  344
+				1804800  469
 				2016000	596
 				2216000   654
 			>;
@@ -344,8 +360,12 @@
 
 		CLUSTER_COST_0: cluster-cost0 {
 			busy-cost-data = <
+				300000   5
+				614400   5
+				864000   7
 				1017600	12
 				1305600	18
+				1420800   22
 				1612800	27
 				1804800	36
 			>;
@@ -356,8 +376,12 @@
 
 		CLUSTER_COST_1: cluster-cost1 {
 			busy-cost-data = <
-				1056000  64
-				1401600	88
+				300000   18
+				652800   24
+				902400   40
+				1056000  63
+				1401600  81
+				1536000  98
 				1804800	108
 				2016000	120
 				2216000    210
@@ -374,7 +398,7 @@
 	};
 
 	chosen {
-		bootargs = "rcupdate.rcu_expedited=1 rcupdate.rcu_normal_after_boot=1 rcu_nocbs=0-7 noirqdebug nosoftlockup mce=ignore_ce";
+		bootargs = "quiet noirqdebug rcupdate.rcu_normal_after_boot=1 rcu_nocbs=0-7";
 	};
 
 	soc: soc { };
@@ -576,6 +600,7 @@
 		clock-names = "core_clk";
 
 		qcom,coresight-jtagmm-cpu = <&CPU0>;
+		status = "disabled";
 	};
 
 	jtag_mm1: jtagmm@9140000 {
@@ -587,6 +612,7 @@
 		clock-names = "core_clk";
 
 		qcom,coresight-jtagmm-cpu = <&CPU1>;
+		status = "disabled";
 	};
 
 	jtag_mm2: jtagmm@9240000 {
@@ -598,6 +624,7 @@
 		clock-names = "core_clk";
 
 		qcom,coresight-jtagmm-cpu = <&CPU2>;
+		status = "disabled";
 	};
 
 	jtag_mm3: jtagmm@9340000 {
@@ -609,6 +636,7 @@
 		clock-names = "core_clk";
 
 		qcom,coresight-jtagmm-cpu = <&CPU3>;
+		status = "disabled";
 	};
 
 	jtag_mm4: jtagmm@9440000 {
@@ -620,6 +648,7 @@
 		clock-names = "core_clk";
 
 		qcom,coresight-jtagmm-cpu = <&CPU4>;
+		status = "disabled";
 	};
 
 	jtag_mm5: jtagmm@9540000 {
@@ -631,6 +660,7 @@
 		clock-names = "core_clk";
 
 		qcom,coresight-jtagmm-cpu = <&CPU5>;
+		status = "disabled";
 	};
 
 	jtag_mm6: jtagmm@9640000 {
@@ -642,6 +672,7 @@
 		clock-names = "core_clk";
 
 		qcom,coresight-jtagmm-cpu = <&CPU6>;
+		status = "disabled";
 	};
 
 	jtag_mm7: jtagmm@9740000 {
@@ -653,6 +684,7 @@
 		clock-names = "core_clk";
 
 		qcom,coresight-jtagmm-cpu = <&CPU7>;
+		status = "disabled";
 	};
 
 	wakegic: wake-gic {
@@ -846,14 +878,21 @@
 		reg-names = "osm_pwrcl_base", "osm_perfcl_base";
 		#clock-cells = <1>;
 		qcom,cpufreq-table-0 =
+			<300000>,
+			<614400>,
+			<864000>,
 			<1017600>,
 			<1305600>,
+			<1420800>,
 			<1612800>,
 			<1804800>;
 
 		qcom,cpufreq-table-4 =
+			<300000>,
+			<652800>,
 			<1056000>,
 			<1401600>,
+			<1536000>,
 			<1804800>,
 			<2016000>,
 			<2216000>;
