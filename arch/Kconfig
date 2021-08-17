@@ -335,13 +335,21 @@ config HAVE_ARCH_JUMP_LABEL
 
 config HAVE_ARCH_JUMP_LABEL_RELATIVE
 	bool
-
+	
+config MMU_GATHER_TABLE_FREE
+	bool
+	
 config HAVE_RCU_TABLE_FREE
 	bool
+    select MMU_GATHER_TABLE_FREE
 
 config HAVE_RCU_TABLE_INVALIDATE
 	bool
-
+	
+config MMU_GATHER_NO_GATHER
+	bool
+	depends on MMU_GATHER_TABLE_FREE
+	
 config ARCH_WANT_IRQS_OFF_ACTIVATE_MM
 	bool
 	help

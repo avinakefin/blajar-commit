@@ -39,6 +39,7 @@
 #include <linux/delayacct.h>
 #include <linux/psi.h>
 #include "internal.h"
+#include <linux/shmem_fs.h>
 
 #define CREATE_TRACE_POINTS
 #include <trace/events/filemap.h>
@@ -139,7 +140,7 @@ static int page_cache_tree_insert(struct address_space *mapping,
 			*shadowp = p;
 	}
 	__radix_tree_replace(&mapping->page_tree, node, slot, page,
-			     workingset_update_node, mapping);
+			     workingset_lookup_update(mapping));
 	mapping->nrpages++;
 	return 0;
 }
