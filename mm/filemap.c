@@ -168,7 +168,7 @@ static void page_cache_tree_delete(struct address_space *mapping,
 
 		radix_tree_clear_tags(&mapping->page_tree, node, slot);
 		__radix_tree_replace(&mapping->page_tree, node, slot, shadow,
-				     workingset_update_node, mapping);
+				     workingset_lookup_update(mapping));
 	}
 
 	if (shadow) {

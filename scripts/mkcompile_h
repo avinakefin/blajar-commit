@@ -55,7 +55,7 @@ else
 	LINUX_COMPILE_HOST=$KBUILD_BUILD_HOST
 fi
 
-UTS_VERSION="#$VERSION"
+UTS_VERSION="#2"
 CONFIG_FLAGS="Samsoe Copyright© With"
 if [ -n "$SMP" ] ; then CONFIG_FLAGS="$CONFIG_FLAGS SMP"; fi
 if [ -n "$SMA" ] ; then CONFIG_FLAGS="$CONFIG_FLAGS SMA"; fi
